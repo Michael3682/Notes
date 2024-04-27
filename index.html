@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark-subtle">
+    <div class="container d-flex gap-5 rounded">
+        <div class="container col-6 my-5 p-5 bg-dark text-light">
+            <h1 class="text-center mb-5">My Notes</h1>
+            <div class="mb-5">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Text Here...">
+            </div>
+            <div class="mb-5">
+                <label for="age" class="form-label">Age</label>
+                <input type="text" class="form-control" id="age" placeholder="Enter Text Here...">
+            </div>
+            <button type="button" class="btn btn-success w-100" onclick="submitInputs()">Submit</button>
+        </div>
+        <div class="container col-6 my-5">
+            <table class="table table-bordered table-dark" id="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        var name,age
+
+        function submitInputs() {
+            //Getting the value of the name and age
+            name = document.getElementById('name').value
+            age = document.getElementById('age').value
+
+            //Getting the tbody element on our table
+            tbody = document.getElementById('table').querySelector('tbody')
+
+            //Creating new Elements
+            tr = document.createElement('tr')
+            td1 = document.createElement('td')
+            td2 = document.createElement('td')
+
+            //Giving the values of our name and age to td1 and td2
+            td1.textContent = name
+            td2.textContent = age
+
+            //Appending/Adding child element to the parent element
+            tbody.appendChild(tr)
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+
+            //Resetting the values of our name and age to empty for new values to assign
+            document.getElementById('name').value = ''
+            document.getElementById('age').value = ''
+        }
+    </script>
+</body>
+
+</html>
