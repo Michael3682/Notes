@@ -14,21 +14,27 @@
         <div class="container col-6 my-5 p-5 bg-dark text-light">
             <h1 class="text-center mb-5">My Notes</h1>
             <div class="mb-5">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter Text Here...">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter Text Here...">
             </div>
             <div class="mb-5">
-                <label for="age" class="form-label">Age</label>
-                <input type="text" class="form-control" id="age" placeholder="Enter Text Here...">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description"></textarea>
             </div>
-            <button type="button" class="btn btn-success w-100" onclick="submitInputs()">Submit</button>
+            <div class="mb-5">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" placeholder="Enter Text Here...">
+            </div>
+            <button type="button" class="btn btn-success w-100 mb-2" onclick="submit()">Submit</button>
+            <button type="button" class="btn btn-danger w-100" onclick="removeTask()">Remove</button>
         </div>
         <div class="container col-6 my-5">
             <table class="table table-bordered table-dark" id="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Age</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,33 +46,40 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
-        var name,age
+        
+        function submit() {
+            var title = document.getElementById('title').value
+            var description = document.getElementById('description').value
+            var date = document.getElementById('date').value
+            
+            const tbody = document.getElementById('table').querySelector('tbody')
 
-        function submitInputs() {
-            //Getting the value of the name and age
-            name = document.getElementById('name').value
-            age = document.getElementById('age').value
-
-            //Getting the tbody element on our table
-            tbody = document.getElementById('table').querySelector('tbody')
-
-            //Creating new Elements
-            tr = document.createElement('tr')
-            td1 = document.createElement('td')
-            td2 = document.createElement('td')
-
-            //Giving the values of our name and age to td1 and td2
-            td1.textContent = name
-            td2.textContent = age
-
-            //Appending/Adding child element to the parent element
-            tbody.appendChild(tr)
-            tr.appendChild(td1)
-            tr.appendChild(td2)
-
-            //Resetting the values of our name and age to empty for new values to assign
-            document.getElementById('name').value = ''
-            document.getElementById('age').value = ''
+            if (title == '' || description == '' || date == '') {
+                alert('Invalid Inputs')
+            }
+            else {
+                const tr = document.createElement('tr')
+                const td1 = document.createElement('td')
+                const td2 = document.createElement('td')
+                const td3 = document.createElement('td')
+    
+                td1.textContent = title
+                td2.textContent = description
+                td3.textContent = date
+    
+                tbody.appendChild(tr)
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+    
+                document.getElementById('title').value = ''
+                document.getElementById('description').value = ''
+                document.getElementById('date').value = ''
+            }
+        }
+        function removeTask() {
+            const tbody = document.getElementById('table').querySelector('tbody')
+            tbody.removeChild(tbody.lastElementChild);
         }
     </script>
 </body>
